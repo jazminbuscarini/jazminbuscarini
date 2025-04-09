@@ -1,0 +1,28 @@
+def main():
+
+    a=float(input("Ingrese un numero"))
+    b=float(input("Ingrese otro numero"))
+    
+    opciones=float(input("Elegir un numero del 1 al 5: 1:sumar dos numeros. 2:restar dos numeros. 3:multiplicar dos numeros. 4: dividir dos numeros. 5:salir."))
+
+    
+    match opciones:
+        case 1:
+            print(a+b)
+
+        case 2:
+            print(a-b)
+
+        case 3:
+            print(a*b)
+        case 4:
+            if b==0:
+                while b==0:
+                    b = float(input("No se puede dividir por 0"))
+            print(a/b)
+
+        case 5:
+            print("chau")
+            
+if __name__== "__main__":
+    main()
