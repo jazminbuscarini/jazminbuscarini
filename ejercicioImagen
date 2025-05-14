@@ -102,7 +102,7 @@ from PIL import Image, ImageTk
 from io import BytesIO
 
 def descargarPortada():
-    urlImagen = "https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fes%2Fs%2Ffotos%2Fnaturaleza-paisaje&psig=AOvVaw3KTmAVn3w0V8M-iYMKUCtt&ust=1747309589439000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNDjnsvxoo0DFQAAAAAdAAAAABAE?raw=true"
+    urlImagen = "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/5.png"
     datosImagen = urlopen(urlImagen)  
     imagenBinaria = datosImagen.read() 
     imagen = Image.open(BytesIO(imagenBinaria))
@@ -110,7 +110,7 @@ def descargarPortada():
 
 
 def descargarFondo():
-    urlImagen = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wallpapers.com%2Ffondos-de-paisajes-naturales&psig=AOvVaw3KTmAVn3w0V8M-iYMKUCtt&ust=1747309589439000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNDjnsvxoo0DFQAAAAAdAAAAABAL?raw=true"
+    urlImagen = "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/5.png"
     datosImagen = urlopen(urlImagen)  
     imagenBinaria = datosImagen.read()  
     imagen = Image.open(BytesIO(imagenBinaria))
@@ -122,10 +122,16 @@ def limpiarVentana():
 
 def accionMostrarFondo():
     limpiarVentana()
-    Label(ventana, Image= imagenFondo)
+    
+    label=Label(ventana, Image= ventana.fondo)
     label.place(width=ancho, height=alto)
+    return imagenTkFondo
 
 def main():
+    global ventana
+    global alto
+    global ancho
+    
     ventana = tk.Tk()
     ventana.title("Imagen en Tkinter")
 
@@ -138,11 +144,13 @@ def main():
 
     imagenRedimensionada = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)
 
-    imagenTk = ImageTk.PhotoImage(imagenRedimensionada)
+    imagenTkPort = ImageTk.PhotoImage(imagenRedimensionada)
+    ventana.portada=imagenTkPort
 
 
-    etiqueta = tk.Label(ventana, image=imagenTk)
+    etiqueta = tk.Label(ventana, image=ventana.portada)
     etiqueta.place(width=ancho, height=alto)
+
     
 
     boton = tk.Button(ventana, text="Empezar", command=accionMostrarFondo)
@@ -159,7 +167,8 @@ def main():
 
     imagenRedimensionada = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)
 
-    imagenFondo = ImageTk.PhotoImage(imagenRedimensionada)
+    imagenTkFondo = ImageTk.PhotoImage(imagenRedimensionada)
+    ventana.fondo=imagenTkFondo
 
 
 
